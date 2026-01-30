@@ -1,13 +1,9 @@
 <?php
-require 'db_config.php';
+require 'connexion.php';
 
 // Récupérer les livres
-$stmt_livres = $pdo->query("SELECT heure, annee_publication FROM livres");
+$stmt_livres = $pdo->query("SELECT heure, annee_publication FROM projet_bdd");
 $livres = $stmt_livres->fetchAll(PDO::FETCH_ASSOC);
-
-// Récupérer les auteurs
-$stmt_auteurs = $pdo->query("SELECT nom, prenom FROM auteurs");
-$auteurs = $stmt_auteurs->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
