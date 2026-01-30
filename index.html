@@ -3,27 +3,36 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page d'administration</title>
+    <title>Suivi de l'Interrupteur et de la Température</title>
+    <link rel="stylesheet" href="css/style.css"
 </head>
 <body>
-    <center><h1>Page d'administration</h1></center>
+    <center><h1>Suivi de l'Interrupteur et de la Température</h1></center>
+            <p>Bienvenue sur la page d'administration !</p>
 
-    <!-- En-tête du site -->
-    <header>
-        <nav>
-            <ul class="button-container">
-                <!-- logo -->
-                <li><img src="img/logo-couff.png" alt="Logo" class="logo" width="150" height="70"></li>
-                
-                <li><a href="#">Températures</a></li>
-                <li><a href="immersion.php">Interrupteur</a></li>
-                <li><a href="candidature.php">Allumage</a></li>
-                <li><a href="contact.html">Courant</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Affichage des données -->
+    <div>
+        <h2>Consigne de l'Interrupteur</h2>
+        <p id="consigne"><?php echo $consigne; ?></p>
 
-    
+        <h2>Durée restante d'allumage</h2>
+        <p id="duree"><?php echo $duree_restante; ?> s</p>
+
+        <h2>Température Actuelle</h2>
+        <p id="temperature"><?php echo $temperature; ?> °C</p>
+    </div>
+
+    <!-- Boutons pour demander des données -->
+    <div>
+        <select>
+            <button onclick="demanderCourbes('jour')"> Température pour 1 jour</button>
+            <button onclick="demanderCourbes('semaine')"> Température pour 1 semaine</button>
+        </select>
+        <button onclick="demanderDureeAllumage()"> Allumage</button>
+        <button onclick="demanderCourant()"> Courant</button>
+    </div>
+
+
 
 </body>
 </html>
