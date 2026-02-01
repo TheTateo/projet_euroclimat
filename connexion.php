@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost'; // ou l'adresse de votre serveur MySQL
-$db = 'tp_bdd';
+$db = 'projet_bdd';
 $user = 'root'; // ex: root
-$pass = '';
+$pass = 'root';
 $charset = 'utf8mb4';
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $options = [

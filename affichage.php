@@ -2,8 +2,8 @@
 require 'connexion.php';
 
 // Récupérer les livres
-$stmt_livres = $pdo->query("SELECT heure, annee_publication FROM projet_bdd");
-$livres = $stmt_livres->fetchAll(PDO::FETCH_ASSOC);
+//$stmt_livres = $pdo->query("SELECT date_j, heure, temperature, courant_secteur, etat_actionneur, duree_allumage FROM projet_bdd");
+//$livres = $stmt_livres->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -11,9 +11,41 @@ $livres = $stmt_livres->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Affichage des livres</title>
+    <title>Suivi de l'Interrupteur et de la Température</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <h1>Suivi de l'Interrupteur et de la Température</h1>
+    <p>Bienvenue sur la page d'administration client usager !</p>
+
+    <!-- Affichage des données -->
+    <div>
+        <?php 
+        // va chercher le dernière enregistrement de la base de données
+        $stmt_ligne = $pdo->query("SELECT etat_actionneur, temperature, duree_allumage 
+                                        FROM mesures_systeme
+                                        ORDER BY id DESC
+                                        LIMIT 1");
+        $ligne = $stmt_ligne->fetch(PDO::FETCH_ASSOC);
+        ?>
+
+        <!-- Tableau des valeurs courantes à afficher pour l'utilisateurs -->
+        <table border="1">
+            <tr>
+                <th>Etat de l'interrupteur</th>
+                <td> <?= ($ligne['etat_actionneur'] == 1) ? "Allumé" : "Éteint" ?></td>
+            </tr>
+            <tr>
+                <th>Température actuelle</th>
+                <td> <?= htmlspecialchars($ligne['temperature']) ?> °C</td>
+            </tr>
+            <tr>
+                <th>Durée restante d'allumage</th>
+                <td><?= htmlspecialchars($ligne['duree_allumage']) ?> s</td>
+            </tr>
+        </table>
+    </div>
+
     <h3>Tableau des Livres et Auteurs</h3>
     <table border="1">
         <tr>
