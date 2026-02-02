@@ -1,9 +1,5 @@
 <?php
 require 'connexion.php';
-
-// Récupérer les livres
-//$stmt_livres = $pdo->query("SELECT date_j, heure, temperature, courant_secteur, etat_actionneur, duree_allumage FROM projet_bdd");
-//$livres = $stmt_livres->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +9,11 @@ require 'connexion.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suivi de l'Interrupteur et de la Température</title>
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- JS des courbes -->
+    <script src="js/temperature.js" defer></script>
 </head>
 <body>
     <h1>Suivi de l'Interrupteur et de la Température</h1>
@@ -29,7 +30,7 @@ require 'connexion.php';
         $ligne = $stmt_ligne->fetch(PDO::FETCH_ASSOC);
         ?>
 
-        <!-- Tableau des valeurs courantes à afficher pour l'utilisateurs -->
+        <!-- Tableau des valeurs courantes à afficher pour les utilisateurs -->
         <table border="1">
             <tr>
                 <th>Etat de l'interrupteur</th>
@@ -46,6 +47,52 @@ require 'connexion.php';
         </table>
     </div>
 
+    <!-- Boutons pour demander des données -->
+    <div>
+        <button onclick="demanderCourbes()"> Température</button>
+        <button onclick="demanderDureeAllumage()"> Allumage</button>
+        <button onclick="demanderCourant()"> Courant</button>
+    </div>
+
+    <!-- Options pour la courbe de température -->
+    <div id="optionsCourbe" style="display:none; margin-top:20px;">
+        <h3>Courbe de température</h3>
+
+        <label>Plage temporelle :</label>
+        <select id="typePlage" onchange="adapterDates()">
+            <option value="jour">Jour</option>
+            <option value="semaine">Semaine</option>
+            <option value="perso">Personnalisée</option>
+        </select>
+
+        <br><br>
+
+        <label>Début :</label>
+        <input type="date" id="dateDebut">
+
+        <label>Fin :</label>
+        <input type="date" id="dateFin">
+
+        <br><br>
+
+        <button onclick="chargerCourbe()">Afficher la courbe</button>
+    </div>
+
+    <!-- Commande d'allumage -->
+    <div id="commandeAllumage" style="display:none; margin-top:20px;">
+        <h3>Allumer l’actionneur</h3>
+
+        <label>Temps d’allumage (secondes) :</label>
+        <input type="number" id="tempsAllumage" min="1" placeholder="ex: 300">
+
+        <br><br>
+
+        <button onclick="envoyerCommandeAllumage()">Valider</button>
+    </div>
+
+
+
+    <!-- Fonctionnalité supplémentaire
     <h3>Tableau des Livres et Auteurs</h3>
     <table border="1">
         <tr>
@@ -68,5 +115,6 @@ require 'connexion.php';
             </tr>
         <?php endfor; ?>
     </table>
+    -->
 </body>
 </html>

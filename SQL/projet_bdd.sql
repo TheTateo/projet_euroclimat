@@ -9,9 +9,15 @@ USE projet_bdd;
 CREATE TABLE mesures_systeme (
     id INT AUTO_INCREMENT PRIMARY KEY,
     date_j DATE NOT NULL, -- Date du jour de l'enregistrement 
-    heure DATETIME NOT NULL,
+    heure TIME NOT NULL,
     temperature DECIMAL(5,2) NOT NULL, -- a Revoir la précision du capteur
     courant_secteur DECIMAL(6,3) NOT NULL,
     etat_actionneur BOOLEAN NOT NULL,
     duree_allumage INT NOT NULL
+);
+
+CREATE TABLE commandes_actionneur (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    duree_allumage INT NOT NULL,
+    date_commande DATETIME NOT NULL
 );

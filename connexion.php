@@ -2,7 +2,7 @@
 $host = 'localhost'; // ou l'adresse de votre serveur MySQL
 $db = 'projet_bdd';
 $user = 'root'; // ex: root
-$pass = 'root';
+$pass = '';
 $charset = 'utf8mb4';
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $options = [
