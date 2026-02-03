@@ -3,9 +3,13 @@ Mercredi 28/01:
   - Mise en place du Github pour la sauvegarde des fichiers du projet - TERMINE
 
 Vendredi 30/01:
-  - Ajout des boutons d'affichage (Courbes, durée d'allumage, courant)
+  - Ajout des boutons d'affichage (Courbes, durée d'allumage, courant) - TERMINE
 
-Samedi 
+Dimanche 01/02:
+  - Création d'un fichier sql pour la base de données - TERMINE
+      - Utilisation de l'IDE VSCodium
+  - Utilisation du fichier SQL pour la base de donnée sur serveur local
+      - Utilisation de Uwamp et Laragon
 
 Lundi 02/02:
   - Ajout des infos à renseigner pour les boutons Température et Allumage - NON TERMINE
