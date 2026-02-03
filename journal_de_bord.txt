@@ -1,0 +1,27 @@
+Mercredi 28/01:
+  - Création de la récupération des valeurs de température actuelle, durée d'alluamge et l'état de l'actionneur
+  - Mise en place du Github pour la sauvegarde des fichiers du projet - TERMINE
+
+Vendredi 30/01:
+  - Ajout des boutons d'affichage (Courbes, durée d'allumage, courant) - TERMINE
+
+Dimanche 01/02:
+  - Création d'un fichier sql pour la base de données - TERMINE
+      - Utilisation de l'IDE VSCodium
+  - Utilisation du fichier SQL pour la base de donnée sur serveur local
+      - Utilisation de Uwamp et Laragon
+
+Lundi 02/02:
+  - Ajout des infos à renseigner pour les boutons Température et Allumage - NON TERMINE
+
+Mardi 03/02:
+  - Modification du nom du projet Sur Github en "projet_euroclimat" - TERMINE
+      - A la demande du professeur/client
+  - Mise en place du site Web hébergé chez chez.com - TERMINE
+      - Utilisation de WinSCP pour se connecter en ftp au serveur de chez.com et y déposer les fichiers du projet
+  - Mise en place de la base de données sur projet.euroclimat.chez.com - NON TERMINE
+      - Utilisation de eSKUeL pour la base de données
+      + Problème de renommage de la base de données par chez.com "projet_euroclimat"
+      + 
+  - Réalisation des diagrammes sysML
+      - Diagramme de cas d'utilisation - NON TERMINE
