@@ -1,0 +1,10 @@
+Mercredi 28/01:
+  - Début du projet
+  - Création de la récupération des valeurs de température actuelle, durée d'alluamge et l'état de l'actionneur
+
+Vendredi 30/01:
+  - Ajout des boutons d'affichage (Courbes, durée d'allumage, courant)
+
+Samedi 
+
+
