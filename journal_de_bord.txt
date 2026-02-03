@@ -11,10 +11,13 @@ Lundi 02/02:
   - Ajout des infos à renseigner pour les boutons Température et Allumage - NON TERMINE
 
 Mardi 03/02:
-  - Modification du nom du projet en "projet_euroclimat"
-      - Sur Github
-  - Début de mise en place du site Web et de la base de données sur chez.com - NON TERMINE
-      - Utilisation de WinSCP pour se connecter en ftp au serveur de chez.com et y déposer le projet
+  - Modification du nom du projet Sur Github en "projet_euroclimat" - TERMINE
+      - A la demande du professeur/client
+  - Mise en place du site Web hébergé chez chez.com - TERMINE
+      - Utilisation de WinSCP pour se connecter en ftp au serveur de chez.com et y déposer les fichiers du projet
+  - Mise en place de la base de données sur projet.euroclimat.chez.com - NON TERMINE
       - Utilisation de eSKUeL pour la base de données
-  - Début de réalisation des diagrammes sysML
+      + Problème de renommage de la base de données par chez.com "projet_euroclimat"
+      + 
+  - Réalisation des diagrammes sysML
       - Diagramme de cas d'utilisation - NON TERMINE
