@@ -78,6 +78,10 @@ require 'connexion.php';
         <button onclick="chargerCourbe()">Afficher la courbe</button>
     </div>
 
+    <div style="margin-top:30px;">
+        <canvas id="graphTemp" width="600" height="300"></canvas>
+    </div>
+
     <!-- Commande d'allumage -->
     <div id="commandeAllumage" style="display:none; margin-top:20px;">
         <h3>Allumer l’actionneur</h3>
