@@ -35,3 +35,4 @@ Lundi 10/02:
   - Reprise du codage
       - Ajout d'une fonction d'envoi par mail - NON TERMINE
       - Ajout d'une connexion sécurisée au site - NON TERMINE
+      - Ajout de la déconnexion - EN COURS

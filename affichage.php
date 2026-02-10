@@ -26,6 +26,12 @@ if (!isset($_SESSION['user'])) {
     <h1>Suivi de l'Interrupteur et de la Température</h1>
     <p>Bienvenue sur la page d'administration client usager !</p>
 
+    <div>
+        <form action="logout.php" method="POST" style="text-align:right;">
+            <button type="submit">Déconnexion</button>
+        </form>
+    </div>
+    
     <!-- Affichage des données -->
     <div>
         <?php 
@@ -35,7 +41,7 @@ if (!isset($_SESSION['user'])) {
                                         ORDER BY id DESC
                                         LIMIT 1
                                     ");
-$ligne = $stmt_ligne->fetch(PDO::FETCH_ASSOC);
+        $ligne = $stmt_ligne->fetch(PDO::FETCH_ASSOC);
         ?>
 
         <!-- Tableau des valeurs courantes à afficher pour les utilisateurs -->
