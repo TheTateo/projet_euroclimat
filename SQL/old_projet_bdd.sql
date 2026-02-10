@@ -47,16 +47,16 @@ VALUES
     '$2y$10$K9y8fYFQ8kGqN2C6Pz7eUuGkqZ9xkQ3Yk7Z9B8HkZkM2y1rA0Oa6W',
     'admin@test.com',
     'admin'
-),
+), -- admin123
 (
     'user1',
     '$2y$10$VJz1b3nZzKZ7zQ3Y7H7P0eYF5fZzQyYxkQqH8yZ9N9kK3C7C1yX8a',
     'user1@test.com',
     'user'
-),
+), -- user123
 (
     'user2',
     '$2y$10$8C9ZyH9KQ3xP2ZK7kN0Zy7F1C6V8ZKQyY9QxH7YQ3N8KZz5C2yB7a',
     'user2@test.com',
     'user'
-);
+); -- user456

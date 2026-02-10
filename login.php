@@ -2,17 +2,31 @@
 require 'connexion.php';
 session_start();
 
-$email = $_POST['email'] ?? '';
+$username = $_POST['username'] ?? '';
 $mot_de_passe = $_POST['mot_de_passe'] ?? '';
 
-$stmt = $pdo->prepare("SELECT * FROM utilisateurs WHERE email = :email");
-$stmt->execute(['email' => $email]);
-$user = $stmt->fetch();
+// Sécurité minimale
+$username = trim($username);
+
+$stmt = $pdo->prepare("
+    SELECT id, username, mot_de_passe, role
+    FROM utilisateurs
+    WHERE username = :username
+");
+$stmt->execute(['username' => $username]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($user && password_verify($mot_de_passe, $user['mot_de_passe'])) {
-    $_SESSION['user'] = $user['email'];
-    header("Location: affichage.php");
+
+    // Protection contre la fixation de session
+    session_regenerate_id(true);
+
+    $_SESSION['user'] = $user['username'];
+    $_SESSION['role'] = $user['role'];
+
+    header("Location: suivi.php"); // ou ta page principale
     exit;
+
 } else {
     echo "Identifiants incorrects";
 }
