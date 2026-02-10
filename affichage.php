@@ -1,5 +1,12 @@
 <?php
 require 'connexion.php';
+require 'mail.php';
+
+session_start();
+if (!isset($_SESSION['user'])) {
+    header("Location: index.html");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,11 +30,12 @@ require 'connexion.php';
     <div>
         <?php 
         // va chercher le dernière enregistrement de la base de données
-        $stmt_ligne = $pdo->query("SELECT etat_actionneur, temperature, duree_allumage 
+        $stmt_ligne = $pdo->query("SELECT id, etat_actionneur, temperature, duree_allumage, alerte_envoyee
                                         FROM mesures_systeme
                                         ORDER BY id DESC
-                                        LIMIT 1");
-        $ligne = $stmt_ligne->fetch(PDO::FETCH_ASSOC);
+                                        LIMIT 1
+                                    ");
+$ligne = $stmt_ligne->fetch(PDO::FETCH_ASSOC);
         ?>
 
         <!-- Tableau des valeurs courantes à afficher pour les utilisateurs -->
@@ -46,6 +54,13 @@ require 'connexion.php';
             </tr>
         </table>
     </div>
+
+    <!-- Alerte -->
+    <?php if ($temperature < $SEUIL_MIN || $temperature > $SEUIL_MAX): ?>
+    <p style="color:red; font-weight:bold; margin-top:15px;">
+        ⚠️ Température hors seuil !
+    </p>
+    <?php endif; ?>
 
     <!-- Boutons pour demander des données -->
     <div>

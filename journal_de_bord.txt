@@ -25,3 +25,13 @@ Mardi 03/02:
       + 
   - Réalisation des diagrammes sysML
       - Diagramme de cas d'utilisation - NON TERMINE
+
+Lundi 09/02:
+  - Reprise Diagramme de cas d'utilisation
+  - Diagramme d'exigences - NON TERMINE
+  - Diagramme de séquence - NON TERMINE
+
+Lundi 10/02:
+  - Reprise du codage
+      - Ajout d'une fonction d'envoi par mail - NON TERMINE
+      - Ajout d'une connexion sécurisée au site - NON TERMINE

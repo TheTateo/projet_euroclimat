@@ -10,9 +10,17 @@
     <center><h1>Login</h1></center>
             <p>Veuillez vous connecter !</p>
 
-    <!-- Affichage des données -->
+    <!-- formulaire de connexion -->
     <div>
-        
+        <form action="login.php" method="POST">
+            <label>Email :</label>
+            <input type="email" name="email" required>
+
+            <label>Mot de passe :</label>
+            <input type="password" name="mot_de_passe" required>
+
+            <button type="submit">Connexion</button>
+        </form>
     </div>
 
 
