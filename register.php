@@ -21,13 +21,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <h2>Créer un compte</h2>
 <form method="POST">
     <label>Nom d'utilisateur :</label>
-    <input type="text" name="username" required>
+    <input type="text" name="username" required><br>
 
     <label>Email :</label>
-    <input type="email" name="email" required>
+    <input type="email" name="email" required><br>
 
     <label>Mot de passe :</label>
-    <input type="password" name="mot_de_passe" required>
+    <input type="password" name="mot_de_passe" required><br>
 
     <button type="submit">Envoyer la demande</button>
 </form>

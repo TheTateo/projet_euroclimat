@@ -31,8 +31,14 @@ Lundi 09/02:
   - Diagramme d'exigences - NON TERMINE
   - Diagramme de séquence - NON TERMINE
 
-Lundi 10/02:
+Mardi 10/02:
   - Reprise du codage
       - Ajout d'une fonction d'envoi par mail - NON TERMINE
       - Ajout d'une connexion sécurisée au site - NON TERMINE
       - Ajout de la déconnexion - EN COURS
+
+Mercredi 11/02:
+  - Reprise diagramme de séquence
+  - Code de création de compte utilisateur
+  
+

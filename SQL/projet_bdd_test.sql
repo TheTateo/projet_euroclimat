@@ -47,3 +47,11 @@ INSERT INTO mesures_systeme
   ('2026-01-20', '08:25:00', 21.90, 229.900, 0, 0),
   ('2026-01-20', '08:30:00', 21.40, 230.000, 1, 900),
   ('2026-01-20', '08:45:00', 22.00, 230.150, 1, 1200);
+
+INSERT INTO utilisateurs (username, mot_de_passe, email, role)
+VALUES (
+    'admin',
+    '$2y$10$RI996y4yFx64oeSGcjvaCu1SZzCjXRgQdi8RS7eYnJsIkZsbEUHje', --admin123
+    'admin@mail.com',
+    'admin'
+);
