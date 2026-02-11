@@ -1,32 +1,31 @@
 <?php
-require 'connexion.php';
 session_start();
+require_once("connexion.php");
 
-$username = $_POST['username'] ?? '';
-$mot_de_passe = $_POST['mot_de_passe'] ?? '';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-// Sécurité minimale
-$username = trim($username);
+    $username = $_POST['username'];
+    $password = $_POST['mot_de_passe'];
 
-$stmt = $pdo->prepare("
-    SELECT id, username, mot_de_passe, role
-    FROM utilisateurs
-    WHERE username = :username
-");
-$stmt->execute(['username' => $username]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt = $pdo->prepare("SELECT * FROM utilisateurs WHERE username = ?");
+    $stmt->execute([$username]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if ($user && password_verify($mot_de_passe, $user['mot_de_passe'])) {
+    if ($user && password_verify($password, $user['mot_de_passe'])) {
 
-    // Protection contre la fixation de session
-    session_regenerate_id(true);
+        $_SESSION['id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['role'] = $user['role'];
 
-    $_SESSION['user'] = $user['username'];
-    $_SESSION['role'] = $user['role'];
+        if ($user['role'] === 'admin') {
+            header("Location: admin_validation.php");
+        } else {
+            header("Location: accueil.php");
+        }
+        exit();
 
-    header("Location: suivi.php"); // ou ta page principale
-    exit;
-
-} else {
-    echo "Identifiants incorrects";
+    } else {
+        echo "Identifiants incorrects ou compte non validé.";
+    }
 }
+?>

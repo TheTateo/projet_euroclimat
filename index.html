@@ -3,23 +3,30 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suivi de l'Interrupteur et de la Température</title>
+    <title>Connexion</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <center><h1>Login</h1></center>
-            <p>Veuillez vous connecter !</p>
+    <h1>Connexion</h1>
+    <p>Veuillez vous connecter !</p>
 
     <!-- formulaire de connexion -->
     <div>
         <form action="login.php" method="POST">
             <label>Utilisateur :</label>
-            <input type="username" name="username" required>
+            <input type="text" name="username" required>
 
             <label>Mot de passe :</label>
             <input type="password" name="mot_de_passe" required>
 
             <button type="submit">Connexion</button>
+        </form>
+
+         <br>
+
+        <!-- bouton création de compte -->
+        <form action="register.php" method="GET">
+            <button type="submit">Créer un compte</button>
         </form>
     </div>
 

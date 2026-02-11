@@ -27,6 +27,16 @@ CREATE TABLE utilisateurs (
     date_creation DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE demandes_inscription (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) UNIQUE NOT NULL,
+    mot_de_passe VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    date_demande DATETIME DEFAULT CURRENT_TIMESTAMP,
+    statut VARCHAR(50) DEFAULT 'en_attente'
+);
+
+
 -- Insertion de données de test
 INSERT INTO mesures_systeme
   (date_j, heure, temperature, courant_secteur, etat_actionneur, duree_allumage)
