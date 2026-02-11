@@ -34,11 +34,17 @@ Lundi 09/02:
 Mardi 10/02:
   - Reprise du codage
       - Ajout d'une fonction d'envoi par mail - NON TERMINE
-      - Ajout d'une connexion sécurisée au site - NON TERMINE
+      - Ajout d'une connexion sécurisée au site - TERMINE
+        - hash de mot de passe stocké dans la base de données
       - Ajout de la déconnexion - EN COURS
 
 Mercredi 11/02:
   - Reprise diagramme de séquence
-  - Code de création de compte utilisateur
-  
+  - Ajout code de création de compte utilisateur - TERMINE
+    - Ajout table utilisateurs
+    + Problème d'admin de départ comment le rajouter
+  - Ajout code de validation admin de création de compte - TERMINE
+    - Ajout table demande_d'inscription
+    - Ajout sous forme de tableau
+  - Reprise de la fonctionnalité d'envoi par mail
 

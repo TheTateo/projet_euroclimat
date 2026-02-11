@@ -8,16 +8,32 @@
 
 /* BODY */
 body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: #f4f6f9;
     color: #333;
     padding: 20px;
 }
 
+/* CONTENEUR PRINCIPAL */
+div {
+    max-width: 360px;
+    background: white;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    margin: 0 auto 20px auto;
+}
+
 /* TITRES */
 h1 {
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 8px;  /* ajusté pour un espacement plus serré */
     color: #2c3e50;
+    font-weight: 700;
+    font-size: 24px;
 }
 
 h3 {
@@ -28,14 +44,42 @@ h3 {
 /* TEXTE */
 p {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;  /* ajusté */
     color: #555;
+    font-size: 15px;
 }
 
-/* CONTENEURS */
-div {
-    margin: 20px auto;
-    max-width: 900px;
+/* FORMULAIRES */
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #34495e;
+    font-size: 14px;
+}
+
+input[type="text"],
+input[type="password"],
+input,
+select {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 6px #aed6f1;
 }
 
 /* TABLEAU */
@@ -68,14 +112,16 @@ tr:nth-child(even) td {
 
 /* BOUTONS */
 button {
+    width: 100%;
     background: #3498db;
     color: #fff;
     border: none;
-    padding: 12px 18px;
-    margin: 5px;
+    padding: 12px 0;
+    margin: 5px 0;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: 600;
     transition: background 0.3s ease, transform 0.2s ease;
 }
 
@@ -88,30 +134,21 @@ button:active {
     transform: translateY(0);
 }
 
+/* BOUTON SECONDAIRE (ex: création de compte) */
+form + form button {
+    background: #ecf0f1;
+    color: #3498db;
+    font-weight: 600;
+    margin-top: 0;
+}
+
+form + form button:hover {
+    background: #d6dde6;
+}
+
 /* GROUPES DE BOUTONS */
 div > button {
     min-width: 140px;
-}
-
-/* FORMULAIRES */
-label {
-    font-weight: 600;
-    margin-right: 10px;
-}
-
-input,
-select {
-    padding: 8px 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-right: 10px;
-    margin-top: 5px;
-}
-
-input:focus,
-select:focus {
-    outline: none;
-    border-color: #3498db;
 }
 
 /* OPTIONS COURBE */
@@ -145,5 +182,18 @@ canvas {
     input, select {
         width: 100%;
         margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 400px) {
+    div {
+        padding: 20px;
+        width: 100%;
+        max-width: 320px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 10px 0;
     }
 }
