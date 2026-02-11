@@ -47,4 +47,4 @@ Mercredi 11/02:
     - Ajout table demande_d'inscription
     - Ajout sous forme de tableau
   - Reprise de la fonctionnalité d'envoi par mail
-
+  - Amélioration du CSS de la page index.html

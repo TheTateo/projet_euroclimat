@@ -19,18 +19,18 @@ body {
 
 /* CONTENEUR PRINCIPAL */
 div {
-    max-width: 360px;
+    max-width: 400px;
     background: white;
     padding: 30px 40px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    margin: 0 auto 20px auto;
+    margin: 0 auto;
 }
 
 /* TITRES */
-h1 {
+h1, h2 {
     text-align: center;
-    margin-bottom: 8px;  /* ajusté pour un espacement plus serré */
+    margin-bottom: 8px;
     color: #2c3e50;
     font-weight: 700;
     font-size: 24px;
@@ -44,7 +44,7 @@ h3 {
 /* TEXTE */
 p {
     text-align: center;
-    margin-bottom: 20px;  /* ajusté */
+    margin-bottom: 20px;
     color: #555;
     font-size: 15px;
 }
@@ -57,14 +57,14 @@ form {
 label {
     display: block;
     margin-bottom: 6px;
-    font-weight: 600;
+    font-weight: bold;
     color: #34495e;
     font-size: 14px;
 }
 
 input[type="text"],
 input[type="password"],
-input,
+input[type="email"],
 select {
     width: 100%;
     padding: 10px 12px;
@@ -80,34 +80,6 @@ select:focus {
     outline: none;
     border-color: #3498db;
     box-shadow: 0 0 6px #aed6f1;
-}
-
-/* TABLEAU */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-
-th {
-    background: #2c3e50;
-    color: #fff;
-    padding: 12px;
-    text-align: left;
-    width: 40%;
-}
-
-td {
-    padding: 12px;
-    background: #fafafa;
-    font-weight: 500;
-}
-
-tr:nth-child(even) td {
-    background: #f1f3f6;
 }
 
 /* BOUTONS */
@@ -134,38 +106,47 @@ button:active {
     transform: translateY(0);
 }
 
-/* BOUTON SECONDAIRE (ex: création de compte) */
-form + form button {
-    background: #ecf0f1;
+/* LIEN RETOUR */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    text-decoration: none;
     color: #3498db;
     font-weight: 600;
-    margin-top: 0;
+    transition: color 0.3s;
 }
 
-form + form button:hover {
-    background: #d6dde6;
+a:hover {
+    color: #2980b9;
 }
 
-/* GROUPES DE BOUTONS */
-div > button {
-    min-width: 140px;
-}
-
-/* OPTIONS COURBE */
-#optionsCourbe,
-#commandeAllumage {
+/* TABLEAU (si utilisé plus tard) */
+table {
+    width: 100%;
+    border-collapse: collapse;
     background: #fff;
-    padding: 20px;
     border-radius: 8px;
+    overflow: hidden;
     box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
-/* GRAPHIQUE */
-canvas {
-    background: #fff;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+th {
+    background: #2c3e50;
+    color: #fff;
+    padding: 12px;
+    text-align: left;
+    width: 40%;
+}
+
+td {
+    padding: 12px;
+    background: #fafafa;
+    font-weight: 500;
+}
+
+tr:nth-child(even) td {
+    background: #f1f3f6;
 }
 
 /* RESPONSIVE */
