@@ -26,12 +26,6 @@ if (!isset($_SESSION['id'])) {
 <body>
     <h1>Suivi de l'Interrupteur et de la Température</h1>
     <p>Bienvenue sur la page d'administration client usager !</p>
-
-    <div>
-        <form action="logout.php" method="POST" style="text-align:right;">
-            <button type="submit">Déconnexion</button>
-        </form>
-    </div>
     
     <!-- Affichage des données -->
     <div>
@@ -71,7 +65,7 @@ if (!isset($_SESSION['id'])) {
 
     <!-- Alerte -->
     <?php
-    if ($temperature < $SEUIL_MIN || $temperature > $SEUIL_MAX) {
+    if ($temperature < SEUIL_MIN || $temperature > SEUIL_MAX) {
 
     // Vérifie si une alerte existe déjà pour cette mesure
     $check = $pdo->prepare("
@@ -85,7 +79,7 @@ if (!isset($_SESSION['id'])) {
     // Si aucune alerte -> on la crée
     if (!$alerteExistante) {
 
-        $type = ($temperature < $SEUIL_MIN) 
+        $type = ($temperature < SEUIL_MIN) 
             ? 'temperature_basse' 
             : 'temperature_haute';
 
@@ -101,7 +95,7 @@ if (!isset($_SESSION['id'])) {
         ]);
 
         // Envoi du mail
-        envoyerAlerteTemperature($temperature, $SEUIL_MIN, $SEUIL_MAX);
+        envoyerAlerteTemperature($temperature, SEUIL_MIN, SEUIL_MAX);
 
         // Marquer comme envoyée
         $pdo->prepare("
@@ -111,16 +105,16 @@ if (!isset($_SESSION['id'])) {
         ")->execute([$ligne['id']]);
     }
     } ?>
+
     <p style="color:red; font-weight:bold; margin-top:15px;">
-        ⚠️ Température hors seuil !
+        Température hors seuil !
     </p>
-    <?php endif; ?>
 
     <!-- Boutons pour demander des données -->
-    <div>
-        <button onclick="demanderCourbes()"> Température</button>
-        <button onclick="demanderDureeAllumage()"> Allumage</button>
-        <button onclick="demanderCourant()"> Courant</button>
+    <div class="tabs">
+    <button class="tab-button active" data-tab="temperature" onclick="demanderCourbes()">Température</button>
+    <button class="tab-button" data-tab="allumage" onclick="demanderDureeAllumage()">Allumage</button>
+    <button class="tab-button" data-tab="courant" onclick="demanderCourant()">Courant</button>
     </div>
 
     <!-- Options pour la courbe de température -->
@@ -163,31 +157,10 @@ if (!isset($_SESSION['id'])) {
         <button onclick="envoyerCommandeAllumage()">Valider</button>
     </div>
 
-
-
-    <!-- Fonctionnalité supplémentaire
-    <h3>Tableau des Livres et Auteurs</h3>
-    <table border="1">
-        <tr>
-            <th>Titre</th>
-            <th>Année de publication</th>
-            <th>Nom de l'auteur</th>
-            <th>Prénom de l'auteur</th>
-        </tr>
-
-        <?php
-        // Boucle sur le maximum des deux tableaux pour éviter les erreurs
-        $max = max(count($livres), count($auteurs));
-        for ($i = 0; $i < $max; $i++):
-        ?>
-            <tr>
-                <td><?= isset($livres[$i]['titre']) ? htmlspecialchars($livres[$i]['titre']) : '' ?></td>
-                <td><?= isset($livres[$i]['annee_publication']) ? htmlspecialchars($livres[$i]['annee_publication']) : '' ?></td>
-                <td><?= isset($auteurs[$i]['nom']) ? htmlspecialchars($auteurs[$i]['nom']) : '' ?></td>
-                <td><?= isset($auteurs[$i]['prenom']) ? htmlspecialchars($auteurs[$i]['prenom']) : '' ?></td>
-            </tr>
-        <?php endfor; ?>
-    </table>
-    -->
+    <div>
+        <form action="logout.php" method="POST" style="text-align:right;">
+            <button type="submit">Déconnexion</button>
+        </form>
+    </div>
 </body>
 </html>

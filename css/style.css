@@ -10,6 +10,7 @@
 body {
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background: #f4f6f9;
@@ -18,7 +19,7 @@ body {
 }
 
 /* CONTENEUR PRINCIPAL */
-div {
+.container {
     max-width: 400px;
     background: white;
     padding: 30px 40px;

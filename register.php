@@ -44,4 +44,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="index.html">Retour</a>
     </div>
 </body>
-<br>
