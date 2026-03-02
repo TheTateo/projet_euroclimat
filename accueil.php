@@ -1,9 +1,10 @@
 <?php
+session_start();
 require 'connexion.php';
 require 'mail.php';
+require 'config.php';
 
-session_start();
-if (!isset($_SESSION['user'])) {
+if (!isset($_SESSION['id'])) {
     header("Location: index.html");
     exit;
 }
@@ -36,19 +37,26 @@ if (!isset($_SESSION['user'])) {
     <div>
         <?php 
         // va chercher le dernière enregistrement de la base de données
-        $stmt_ligne = $pdo->query("SELECT id, etat_actionneur, temperature, duree_allumage, alerte_envoyee
+        $stmt_ligne = $pdo->query("SELECT id, etat_actionneur, temperature, duree_allumage
                                         FROM mesures_systeme
                                         ORDER BY id DESC
                                         LIMIT 1
                                     ");
         $ligne = $stmt_ligne->fetch(PDO::FETCH_ASSOC);
+
+        // Evite les erreurs
+        if ($ligne) {
+            $temperature = $ligne['temperature'];
+        } else {
+            $temperature = 0; // valeur par défaut
+        }
         ?>
 
         <!-- Tableau des valeurs courantes à afficher pour les utilisateurs -->
         <table border="1">
             <tr>
                 <th>Etat de l'interrupteur</th>
-                <td> <?= ($ligne['etat_actionneur'] == 1) ? "Allumé" : "Éteint" ?></td>
+                <td> <?= isset($ligne['etat_actionneur']) && $ligne['etat_actionneur'] == 1 ? "Allumé" : "Éteint" ?></td>
             </tr>
             <tr>
                 <th>Température actuelle</th>
@@ -62,7 +70,47 @@ if (!isset($_SESSION['user'])) {
     </div>
 
     <!-- Alerte -->
-    <?php if ($temperature < $SEUIL_MIN || $temperature > $SEUIL_MAX): ?>
+    <?php
+    if ($temperature < $SEUIL_MIN || $temperature > $SEUIL_MAX) {
+
+    // Vérifie si une alerte existe déjà pour cette mesure
+    $check = $pdo->prepare("
+        SELECT id FROM alertes
+        WHERE mesure_id = ?
+        AND envoyee = 0
+    ");
+    $check->execute([$ligne['id']]);
+    $alerteExistante = $check->fetch(PDO::FETCH_ASSOC);
+
+    // Si aucune alerte -> on la crée
+    if (!$alerteExistante) {
+
+        $type = ($temperature < $SEUIL_MIN) 
+            ? 'temperature_basse' 
+            : 'temperature_haute';
+
+        $insert = $pdo->prepare("
+            INSERT INTO alertes (mesure_id, type_alerte, valeur, envoyee)
+            VALUES (?, ?, ?, 0)
+        ");
+
+        $insert->execute([
+            $ligne['id'],
+            $type,
+            $temperature
+        ]);
+
+        // Envoi du mail
+        envoyerAlerteTemperature($temperature, $SEUIL_MIN, $SEUIL_MAX);
+
+        // Marquer comme envoyée
+        $pdo->prepare("
+            UPDATE alertes 
+            SET envoyee = 1 
+            WHERE mesure_id = ?
+        ")->execute([$ligne['id']]);
+    }
+    } ?>
     <p style="color:red; font-weight:bold; margin-top:15px;">
         ⚠️ Température hors seuil !
     </p>

@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = password_hash($_POST['mot_de_passe'], PASSWORD_DEFAULT);
 
     try {
-        $stmt = $pdo->prepare("INSERT INTO demandes_inscription (username, mot_de_passe, email) VALUES (?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO demandes_creation (username, mot_de_passe, email) VALUES (?, ?, ?)");
         $stmt->execute([$username, $password, $email]);
 
         echo "Demande envoyée. En attente de validation par un administrateur.";

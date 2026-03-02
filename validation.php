@@ -16,7 +16,7 @@ if (isset($_POST['valider'])) {
 
     $id = intval($_POST['id']);
 
-    $stmt = $pdo->prepare("SELECT * FROM demandes_inscription WHERE id = ?");
+    $stmt = $pdo->prepare("SELECT * FROM demandes_creation WHERE id = ?");
     $stmt->execute([$id]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -27,7 +27,7 @@ if (isset($_POST['valider'])) {
         $insert->execute([$user['username'], $user['mot_de_passe'], $user['email']]);
 
         // Suppression de la demande
-        $delete = $pdo->prepare("DELETE FROM demandes_inscription WHERE id = ?");
+        $delete = $pdo->prepare("DELETE FROM demandes_creation WHERE id = ?");
         $delete->execute([$id]);
     }
 }
@@ -37,7 +37,7 @@ if (isset($_POST['refuser'])) {
 
     $id = intval($_POST['id']);
 
-    $delete = $pdo->prepare("DELETE FROM demandes_inscription WHERE id = ?");
+    $delete = $pdo->prepare("DELETE FROM demandes_creation WHERE id = ?");
     $delete->execute([$id]);
 }
 
@@ -45,7 +45,7 @@ if (isset($_POST['refuser'])) {
    RÉCUPÉRATION DES DEMANDES
 =========================== */
 
-$stmt = $pdo->query("SELECT * FROM demandes_inscription ORDER BY date_demande DESC");
+$stmt = $pdo->query("SELECT * FROM demandes_creation ORDER BY date_demande DESC");
 $demandes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
@@ -65,7 +65,7 @@ $demandes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 
-<h2>Demandes d'inscription en attente</h2>
+<h2>Demandes d_creation en attente</h2>
 
 <?php if (count($demandes) > 0): ?>
 

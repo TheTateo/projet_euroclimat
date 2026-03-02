@@ -27,7 +27,7 @@ CREATE TABLE utilisateurs (
     date_creation DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE demandes_inscription (
+CREATE TABLE demandes_creation (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(100) UNIQUE NOT NULL,
     mot_de_passe VARCHAR(255) NOT NULL,
