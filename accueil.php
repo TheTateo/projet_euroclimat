@@ -28,41 +28,61 @@ if (!isset($_SESSION['id'])) {
     <p>Bienvenue sur la page d'administration client usager !</p>
     
     <!-- Affichage des données -->
-    <div>
-        <?php 
-        // va chercher le dernière enregistrement de la base de données
-        $stmt_ligne = $pdo->query("SELECT id, etat_actionneur, temperature, duree_allumage
-                                        FROM mesures_systeme
-                                        ORDER BY id DESC
-                                        LIMIT 1
-                                    ");
-        $ligne = $stmt_ligne->fetch(PDO::FETCH_ASSOC);
+    <div class="container-dashboard">
 
-        // Evite les erreurs
-        if ($ligne) {
-            $temperature = $ligne['temperature'];
-        } else {
-            $temperature = 0; // valeur par défaut
-        }
-        ?>
+    <?php 
+    $stmt_ligne = $pdo->query("SELECT id, etat_actionneur, temperature, duree_allumage
+                                FROM mesures_systeme
+                                ORDER BY id DESC
+                                LIMIT 1");
+    $ligne = $stmt_ligne->fetch(PDO::FETCH_ASSOC);
 
-        <!-- Tableau des valeurs courantes à afficher pour les utilisateurs -->
-        <table border="1">
-            <tr>
-                <th>Etat de l'interrupteur</th>
-                <td> <?= isset($ligne['etat_actionneur']) && $ligne['etat_actionneur'] == 1 ? "Allumé" : "Éteint" ?></td>
-            </tr>
-            <tr>
-                <th>Température actuelle</th>
-                <td> <?= htmlspecialchars($ligne['temperature']) ?> °C</td>
-            </tr>
-            <tr>
-                <th>Durée restante d'allumage</th>
-                <td><?= htmlspecialchars($ligne['duree_allumage']) ?> s</td>
-            </tr>
-        </table>
+    if ($ligne) {
+        $temperature = $ligne['temperature'];
+    } else {
+        $temperature = 0;
+    }
+    ?>
+
+    <!-- Bloc informations -->
+    <div class="container-info">
+
+        <div class="gauche">
+            <h2>Valeurs actuelles</h2>
+
+            <table>
+                <tr>
+                    <th>Etat de l'interrupteur</th>
+                    <td><?= isset($ligne['etat_actionneur']) && $ligne['etat_actionneur'] == 1 ? "Allumé" : "Éteint" ?></td>
+                </tr>
+
+                <tr>
+                    <th>Température actuelle</th>
+                    <td><?= htmlspecialchars($ligne['temperature']) ?> °C</td>
+                </tr>
+
+                <tr>
+                    <th>Durée restante d'allumage</th>
+                    <td><?= htmlspecialchars($ligne['duree_allumage']) ?> s</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="droite">
+            <h2>Alertes</h2>
+        </div>
+
     </div>
 
+    <div class="button-courbes">
+        <!-- Boutons javascript -->
+        <div class="tabs">
+            <button class="tab-button active" onclick="demanderCourbes()">Température</button>
+            <button class="tab-button" onclick="demanderDureeAllumage()">Allumage</button>
+            <button class="tab-button" onclick="demanderCourant()">Courant</button>
+        </div>
+    </div>
+    
     <!-- Alerte -->
     <?php
     if ($temperature < SEUIL_MIN || $temperature > SEUIL_MAX) {
@@ -105,17 +125,6 @@ if (!isset($_SESSION['id'])) {
         ")->execute([$ligne['id']]);
     }
     } ?>
-
-    <p style="color:red; font-weight:bold; margin-top:15px;">
-        Température hors seuil !
-    </p>
-
-    <!-- Boutons pour demander des données -->
-    <div class="tabs">
-    <button class="tab-button active" data-tab="temperature" onclick="demanderCourbes()">Température</button>
-    <button class="tab-button" data-tab="allumage" onclick="demanderDureeAllumage()">Allumage</button>
-    <button class="tab-button" data-tab="courant" onclick="demanderCourant()">Courant</button>
-    </div>
 
     <!-- Options pour la courbe de température -->
     <div id="optionsCourbe" style="display:none; margin-top:20px;">
