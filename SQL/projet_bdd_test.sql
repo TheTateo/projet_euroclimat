@@ -71,12 +71,22 @@ CREATE TABLE alertes (
 -- =====================================================
 
 INSERT INTO mesures_systeme
-  (date_j, heure, temperature, courant_secteur, etat_actionneur, duree_allumage)
-VALUES
-  ('2026-01-20', '08:00:00', 21.50, 230.120, 1, 300),
-  ('2026-01-20', '08:05:00', 22.10, 229.980, 1, 600),
-  ('2026-01-20', '08:10:00', 28.80, 230.050, 0, 0),
-  ('2026-01-20', '08:15:00', 30.00, 230.200, 1, 450);
+(date_j, heure, temperature, courant_secteur, etat_actionneur, duree_allumage)
+SELECT
+DATE(d) AS date_j,
+TIME(d) AS heure,
+ROUND(15 + RAND()*15,2) AS temperature,
+ROUND(229 + RAND()*2,3) AS courant_secteur,
+FLOOR(RAND()*2) AS etat_actionneur,
+FLOOR(RAND()*900) AS duree_allumage
+FROM (
+    SELECT TIMESTAMP('2026-03-01 00:00:00') + INTERVAL seq*5 MINUTE AS d
+    FROM (
+        SELECT @row := @row + 1 AS seq
+        FROM information_schema.columns, (SELECT @row := -1) r
+        LIMIT 2016
+    ) t
+) dates;
 
 -- Mot de passe en clair : admin123
 INSERT INTO utilisateurs (username, mot_de_passe, email, role)

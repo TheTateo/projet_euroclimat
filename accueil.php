@@ -77,12 +77,12 @@ if (!isset($_SESSION['id'])) {
     <div class="button-courbes">
         <!-- Boutons javascript -->
         <div class="tabs">
-            <button class="tab-button active" onclick="demanderCourbes()">Température</button>
-            <button class="tab-button" onclick="demanderDureeAllumage()">Allumage</button>
-            <button class="tab-button" onclick="demanderCourant()">Courant</button>
+            <button class="tab-button active" onclick="ouvrirCourbe('temperature')">Température</button>
+            <button class="tab-button" onclick="ouvrirCourbe('allumage')">Allumage</button>
+            <button class="tab-button" onclick="ouvrirCourbe('courant')">Courant</button>
         </div>
     </div>
-    
+
     <!-- Alerte -->
     <?php
     if ($temperature < SEUIL_MIN || $temperature > SEUIL_MAX) {
@@ -128,13 +128,13 @@ if (!isset($_SESSION['id'])) {
 
     <!-- Options pour la courbe de température -->
     <div id="optionsCourbe" style="display:none; margin-top:20px;">
-        <h3>Courbe de température</h3>
+        <h3>Afficher une courbe</h3>
 
         <label>Plage temporelle :</label>
         <select id="typePlage" onchange="adapterDates()">
             <option value="jour">Jour</option>
             <option value="semaine">Semaine</option>
-            <option value="perso">Personnalisée</option>
+            <option value="custom">Personnalisée</option>
         </select>
 
         <br><br>
