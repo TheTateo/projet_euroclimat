@@ -71,21 +71,15 @@ if (!isset($_SESSION['id'])) {
         <div class="droite">
             <h2>Alertes</h2>
 
-            <h2>Durée D'allumage</h2>
-            <button onclick="choisirCourbe('allumage')">Allumage</button>
-            <!-- Commande d'allumage -->
-            <div id="commandeAllumage" style="display:none; margin-top:20px;">
-                <h3>Allumer l’actionneur</h3>
+            <div class="bloc-allumage">
+                <h2>Durée d'allumage</h2>
 
-                <label>Temps d’allumage (secondes) :</label>
+                <label for="tempsAllumage">Temps (secondes) :</label>
                 <input type="number" id="tempsAllumage" min="1" placeholder="ex: 300">
 
-                <br><br>
-
-                <button onclick="envoyerCommandeAllumage()">Valider</button>
+                <button class="btn-allumage" onclick="envoyerCommandeAllumage()">Allumage</button>
             </div>
         </div>
-
     </div>
 
     <div class="container-courbes">

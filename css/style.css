@@ -103,6 +103,28 @@ body {
     background-color: #e0e0e0;
 }
 
+/* Bloc en bas */
+.bloc-allumage {
+    margin-top: auto;
+}
+
+/* Champ input */
+.bloc-allumage input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+/* Bouton moitié largeur */
+.btn-allumage {
+    width: 50%;
+    display: block;
+    margin: 15px auto;
+    padding: 10px;
+    cursor: pointer;
+}
+
 /* =====================================================
    5. TITRES
 ===================================================== */

@@ -80,7 +80,7 @@ function getTitreGraphique() {
     } else {
         const debut = document.getElementById("dateDebut").value;
         const fin = document.getElementById("dateFin").value;
-        return "Données du " + debut + " au " + fin;
+        return "Graphique du " + debut + " au " + fin;
     }
 }
 
@@ -107,9 +107,6 @@ function afficherCourbe(data) {
     switch(typeCourbe) {
         case "temperature":
             valeurs = data.map(d => d.temperature);
-            break;
-        case "allumage":
-            valeurs = data.map(d => d.etat_actionneur);
             break;
         case "courant":
             valeurs = data.map(d => d.courant_secteur);
