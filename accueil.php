@@ -70,16 +70,61 @@ if (!isset($_SESSION['id'])) {
 
         <div class="droite">
             <h2>Alertes</h2>
+
+            <h2>Durée D'allumage</h2>
+            <button onclick="choisirCourbe('allumage')">Allumage</button>
+            <!-- Commande d'allumage -->
+            <div id="commandeAllumage" style="display:none; margin-top:20px;">
+                <h3>Allumer l’actionneur</h3>
+
+                <label>Temps d’allumage (secondes) :</label>
+                <input type="number" id="tempsAllumage" min="1" placeholder="ex: 300">
+
+                <br><br>
+
+                <button onclick="envoyerCommandeAllumage()">Valider</button>
+            </div>
         </div>
 
     </div>
 
-    <div class="button-courbes">
-        <!-- Boutons javascript -->
+    <div class="container-courbes">
+        <h2>Affichage des courbes</h2>
+        <!-- Boutons de sélection -->
         <div class="tabs">
-            <button class="tab-button active" onclick="ouvrirCourbe('temperature')">Température</button>
-            <button class="tab-button" onclick="ouvrirCourbe('allumage')">Allumage</button>
-            <button class="tab-button" onclick="ouvrirCourbe('courant')">Courant</button>
+            <button onclick="choisirCourbe('temperature')">Température</button>
+            <button onclick="choisirCourbe('courant')">Courant</button>
+        </div>
+
+        <!-- Options de la courbe -->
+        <div id="optionsCourbe" style="display:none; margin-top:20px;">
+
+            <label>Plage temporelle :</label>
+            <select id="typePlage" onchange="adapterDates()">
+                <option value="jour">Jour</option>
+                <option value="semaine">Semaine</option>
+                <option value="custom">Personnalisée</option>
+            </select>
+            <br><br>
+
+            <!-- Pour Jour -->
+            <div id="jourContainer">
+                <label>Jour :</label>
+                <input type="date" id="dateJour">
+            </div>
+
+            <div id="periodeContainer" style="display:none;">
+                <label>Début :</label>
+                <input type="date" id="dateDebut">
+
+                <label>Fin :</label>
+                <input type="date" id="dateFin">
+            </div>
+        </div>
+
+        <!-- Canvas de la courbe -->
+        <div style="margin-top:30px;">
+            <canvas id="graphTemp" width="600" height="300"></canvas>
         </div>
     </div>
 
@@ -125,47 +170,7 @@ if (!isset($_SESSION['id'])) {
         ")->execute([$ligne['id']]);
     }
     } ?>
-
-    <!-- Options pour la courbe de température -->
-    <div id="optionsCourbe" style="display:none; margin-top:20px;">
-        <h3>Afficher une courbe</h3>
-
-        <label>Plage temporelle :</label>
-        <select id="typePlage" onchange="adapterDates()">
-            <option value="jour">Jour</option>
-            <option value="semaine">Semaine</option>
-            <option value="custom">Personnalisée</option>
-        </select>
-
-        <br><br>
-
-        <label>Début :</label>
-        <input type="date" id="dateDebut">
-
-        <label>Fin :</label>
-        <input type="date" id="dateFin">
-
-        <br><br>
-
-        <button onclick="chargerCourbe()">Afficher la courbe</button>
-    </div>
-
-    <div style="margin-top:30px;">
-        <canvas id="graphTemp" width="600" height="300"></canvas>
-    </div>
-
-    <!-- Commande d'allumage -->
-    <div id="commandeAllumage" style="display:none; margin-top:20px;">
-        <h3>Allumer l’actionneur</h3>
-
-        <label>Temps d’allumage (secondes) :</label>
-        <input type="number" id="tempsAllumage" min="1" placeholder="ex: 300">
-
-        <br><br>
-
-        <button onclick="envoyerCommandeAllumage()">Valider</button>
-    </div>
-
+    <!-- Deconnexion -->
     <div>
         <form action="logout.php" method="POST" style="text-align:right;">
             <button type="submit">Déconnexion</button>

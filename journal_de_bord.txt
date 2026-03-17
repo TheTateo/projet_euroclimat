@@ -1,5 +1,5 @@
 Mercredi 28/01:
-  - Création de la récupération des valeurs de température actuelle, durée d'alluamge et l'état de l'actionneur
+  - Création de la récupération des valeurs de température actuelle, durée d'allumage et l'état de l'actionneur
   - Mise en place du Github pour la sauvegarde des fichiers du projet - TERMINE
 
 Vendredi 30/01:
@@ -48,3 +48,20 @@ Mercredi 11/02:
     - Ajout sous forme de tableau
   - Reprise de la fonctionnalité d'envoi par mail
   - Amélioration du CSS de la page index.html
+
+Lundi 02/03:
+  - Correction d'une erreur accueil.php - TERMINE
+  - Réalisation du diagramme MCD - NON TERMINE
+    - Utilisation de Mermaid pour réaliser le diagramme
+
+Mardi 02/03:
+  - Reprise du diagramme MCD - TERMINE
+
+Mardi 16/03:
+  - Modification du site en ligne hébergé par chez.com
+
+Mardi 17/03:
+  - Ajout Courbe de température - TERMINE
+    - Choix du jour précis qu'on va afficher si la plage temporelle est sur 'jour'
+    - Ajout des titres des axes + titre au graphique
+    + Correction des requêtes pour créer le graphique
