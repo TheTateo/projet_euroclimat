@@ -25,13 +25,26 @@ if (!isset($_SESSION['id'])) {
 </head>
 <body>
     <h1>Suivi de l'Interrupteur et de la Température</h1>
-    <p>Bienvenue sur la page d'administration client usager !</p>
+    <p>
+        Bienvenue sur la page d'administration client usager !
+        <br>
+        Utilisateur connecté : 
+        <strong>
+        <?php 
+        if (isset($_SESSION['username'])) {
+            echo htmlspecialchars($_SESSION['username']);
+        } else {
+            echo "Inconnu";
+        }
+        ?>
+        </strong>
+    </p>
     
     <!-- Affichage des données -->
     <div class="container-dashboard">
 
     <?php 
-    $stmt_ligne = $pdo->query("SELECT id, etat_actionneur, temperature, duree_allumage
+    $stmt_ligne = $pdo->query("SELECT id, etat_actionneur, temperature, courant_secteur, duree_allumage
                                 FROM mesures_systeme
                                 ORDER BY id DESC
                                 LIMIT 1");
@@ -57,8 +70,13 @@ if (!isset($_SESSION['id'])) {
                 </tr>
 
                 <tr>
-                    <th>Température actuelle</th>
+                    <th>Température</th>
                     <td><?= htmlspecialchars($ligne['temperature']) ?> °C</td>
+                </tr>
+
+                <tr>
+                    <th>Courant secteur</th>
+                    <td><?= htmlspecialchars($ligne['courant_secteur']) ?> A</td>
                 </tr>
 
                 <tr>
@@ -71,15 +89,17 @@ if (!isset($_SESSION['id'])) {
         <div class="droite">
             <h2>Alertes</h2>
 
-            <div class="bloc-allumage">
-                <h2>Durée d'allumage</h2>
-
-                <label for="tempsAllumage">Temps (secondes) :</label>
-                <input type="number" id="tempsAllumage" min="1" placeholder="ex: 300">
-
-                <button class="btn-allumage" onclick="envoyerCommandeAllumage()">Allumage</button>
-            </div>
+            
         </div>
+    </div>
+
+    <div class="container-allumage">
+        <h2>Durée d'allumage</h2>
+
+        <label for="tempsAllumage">Temps (secondes) :</label>
+        <input type="number" id="tempsAllumage" min="1" placeholder="ex: 30">
+
+        <button class="btn-allumage" onclick="envoyerCommandeAllumage()">Allumage</button>
     </div>
 
     <div class="container-courbes">

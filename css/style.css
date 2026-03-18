@@ -103,26 +103,52 @@ body {
     background-color: #e0e0e0;
 }
 
+/* Container allumage */
 /* Bloc en bas */
-.bloc-allumage {
-    margin-top: auto;
+.container-allumage {
+    margin-top: 20px;
+    background-color: #929090;
+    padding: 15px;
 }
 
-/* Champ input */
-.bloc-allumage input {
-    width: 100%;
+/* Titre au-dessus */
+.container-allumage h2 {
+    margin-bottom: 10px;
+}
+
+/* Ligne contenant label + input + bouton */
+.container-allumage label,
+.container-allumage input,
+.container-allumage .btn-allumage {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Label */
+.container-allumage label {
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+/* Input */
+.container-allumage input {
+    width: 120px;
     padding: 8px;
-    margin-top: 10px;
+    margin-right: 10px;
     box-sizing: border-box;
 }
 
-/* Bouton moitié largeur */
+/* Bouton */
 .btn-allumage {
-    width: 50%;
-    display: block;
-    margin: 15px auto;
-    padding: 10px;
+    width: auto;
+    padding: 10px 15px;
     cursor: pointer;
+    background-color: #34495e;
+}
+
+/* Hover */
+.container-allumage .btn-allumage:hover {
+    background-color: #ccc;
 }
 
 /* =====================================================

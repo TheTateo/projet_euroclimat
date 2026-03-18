@@ -65,3 +65,8 @@ Mardi 17/03:
     - Choix du jour précis qu'on va afficher si la plage temporelle est sur 'jour'
     - Ajout des titres des axes + titre au graphique
     + Correction des requêtes pour créer le graphique
+
+Mardi 18/03:
+  - Modificaiton emplacement container allumage
+  - Réflexion sur l'envoi de la demande d'allumage au relais secteur
+    - Solution : Connexion TCP au Raspberry
