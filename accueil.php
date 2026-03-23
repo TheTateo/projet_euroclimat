@@ -26,7 +26,7 @@ if (!isset($_SESSION['id'])) {
 <body>
     <h1>Suivi de l'Interrupteur et de la Température</h1>
     <p>
-        Bienvenue sur la page d'administration client usager !
+        Bienvenue sur la page d'administration client !
         <br>
         Utilisateur connecté : 
         <strong>
@@ -87,15 +87,35 @@ if (!isset($_SESSION['id'])) {
         </div>
 
         <div class="droite">
-            <h2>Alertes</h2>
-
+            <h2>Historique des Alertes</h2>
+            <?php
+            $stmt_alerte = $pdo->query("SELECT valeur, date_alerte
+                                FROM alertes
+                                ORDER BY date_alerte ASC
+                                LIMIT 5");
+            $alerte = $stmt_alerte->fetch(PDO::FETCH_ASSOC);
+            ?>
             
+            <table>
+                <tr>
+                    <th>Valeur</th>
+                    <th>Heure / Date</th>
+                </tr>
+
+                <?php while ($alerte = $stmt_alerte->fetch(PDO::FETCH_ASSOC)) : ?>
+                <tr>
+                    <td><?= htmlspecialchars($alerte['valeur']) ?> °C</td>
+                    <td>
+                        <?= (new DateTime($alerte['date_alerte']))->format('H:i - d/m/Y') ?>
+                    </td>
+                </tr>
+                <?php endwhile; ?>
+            </table>
         </div>
     </div>
 
     <div class="container-allumage">
         <h2>Durée d'allumage</h2>
-
         <label for="tempsAllumage">Temps (secondes) :</label>
         <input type="number" id="tempsAllumage" min="1" placeholder="ex: 30">
 

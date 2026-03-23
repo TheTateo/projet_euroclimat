@@ -70,3 +70,8 @@ Mardi 18/03:
   - Modificaiton emplacement container allumage
   - Réflexion sur l'envoi de la demande d'allumage au relais secteur
     - Solution : Connexion TCP au Raspberry
+
+Lundi 23/03:
+  - Code exemple pour la connexion client TCP au serveur Raspberry - NON TERMINE
+  - Début de mise en place d'une API pour le Raspberry - NON TERMINE
+  - Adaptation du format dan sle tableau historique d'alerte - TERMINE
