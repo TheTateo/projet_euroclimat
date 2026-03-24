@@ -23,6 +23,16 @@ CREATE TABLE mesures_systeme (
 );
 
 -- =====================================================
+-- TABLE : commande_actionneur
+-- =====================================================
+CREATE TABLE commandes_actionneur (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    utilisateur_id INT NOT NULL,           -- l'utilisateur qui déclenche l'allumage
+    duree_allumage INT NOT NULL,           -- durée en secondes
+    date_commande DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- =====================================================
 -- TABLE : utilisateurs
 -- =====================================================
 

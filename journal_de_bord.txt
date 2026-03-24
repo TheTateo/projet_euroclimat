@@ -67,7 +67,7 @@ Mardi 17/03:
     + Correction des requêtes pour créer le graphique
 
 Mardi 18/03:
-  - Modificaiton emplacement container allumage
+  - Modificaiton emplacement container allumage - TERMINE
   - Réflexion sur l'envoi de la demande d'allumage au relais secteur
     - Solution : Connexion TCP au Raspberry
 
@@ -77,4 +77,6 @@ Lundi 23/03:
   - Adaptation du format dans le tableau historique d'alerte - TERMINE
 
 Mardi 24/03:
-  - Amélioration de la visibilité du bouton Température et Courant lorsqu'ils sont sélectionnés
+  - Amélioration de la visibilité du bouton Température et Courant lorsqu'ils sont sélectionnés - TERMINE
+  - Actualisation automatique du graphique affiché avec le bouton cliqué - TERMINE
+    + Changement de la logique d'actualisation pour qu'ils prennent pas que pour les jours

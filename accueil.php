@@ -20,7 +20,13 @@ if (!isset($_SESSION['id'])) {
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- JS des courbes -->
+
+    <!-- ou nom de l'utilisateur connecté (à récupérer depuis PHP ou session) -->
+    <script>const utilisateurId = <?= json_encode($_SESSION['id'] ?? 0); ?>;</script>
+
+    <!-- fichier js -->
+    <script src="js/commandeInterrupteur.js" defer></script>
+    <script src="js/compterRebours.js" defer></script>
     <script src="js/temperature.js" defer></script>
 </head>
 <body>
@@ -81,7 +87,7 @@ if (!isset($_SESSION['id'])) {
 
                 <tr>
                     <th>Durée restante d'allumage</th>
-                    <td><?= htmlspecialchars($ligne['duree_allumage']) ?> s</td>
+                    <td id="compteAReboursAllumage"><?= htmlspecialchars($ligne['duree_allumage']) ?> s</td>
                 </tr>
             </table>
         </div>
