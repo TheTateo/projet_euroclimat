@@ -114,6 +114,7 @@ if (!isset($_SESSION['id'])) {
         </div>
     </div>
 
+    <!-- Container pour l'allumage de l'interrupteur-->
     <div class="container-allumage">
         <h2>Durée d'allumage</h2>
         <label for="tempsAllumage">Temps (secondes) :</label>
@@ -126,8 +127,8 @@ if (!isset($_SESSION['id'])) {
         <h2>Affichage des courbes</h2>
         <!-- Boutons de sélection -->
         <div class="tabs">
-            <button onclick="choisirCourbe('temperature')">Température</button>
-            <button onclick="choisirCourbe('courant')">Courant</button>
+            <button class="tabs-button" onclick="choisirCourbe(event, 'temperature')">Température</button>
+            <button class="tabs-button" onclick="choisirCourbe(event, 'courant')">Courant</button>
         </div>
 
         <!-- Options de la courbe -->
@@ -204,6 +205,7 @@ if (!isset($_SESSION['id'])) {
         ")->execute([$ligne['id']]);
     }
     } ?>
+
     <!-- Deconnexion -->
     <div>
         <form action="logout.php" method="POST" style="text-align:right;">

@@ -74,4 +74,7 @@ Mardi 18/03:
 Lundi 23/03:
   - Code exemple pour la connexion client TCP au serveur Raspberry - NON TERMINE
   - Début de mise en place d'une API pour le Raspberry - NON TERMINE
-  - Adaptation du format dan sle tableau historique d'alerte - TERMINE
+  - Adaptation du format dans le tableau historique d'alerte - TERMINE
+
+Mardi 24/03:
+  - Amélioration de la visibilité du bouton Température et Courant lorsqu'ils sont sélectionnés

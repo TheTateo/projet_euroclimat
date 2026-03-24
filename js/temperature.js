@@ -2,7 +2,24 @@ let chartTemp = null;
 let typeCourbe = "temperature";
 
 // Choix du type de courbe
-function choisirCourbe(type) {
+function choisirCourbe(evt, type) {
+    let boutons = document.querySelectorAll(".tabs-button");
+
+    boutons.forEach(btn => {
+        btn.classList.remove(
+            "temperature-active",
+            "courant-active"
+        );
+    });
+
+    if (type === "temperature") {
+        evt.target.classList.add("temperature-active");
+    }
+
+    if (type === "courant") {
+        evt.target.classList.add("courant-active");
+    }
+
     typeCourbe = type;
     demanderCourbes();
 }
@@ -11,7 +28,6 @@ function choisirCourbe(type) {
 function demanderCourbes() {
     cacherToutesZones();
     document.getElementById("optionsCourbe").style.display = "block";
-    adapterDates();
     chargerCourbe();
 }
 
@@ -49,16 +65,18 @@ function adapterDates() {
 function chargerCourbe() {
     let debut, fin;
     const type = document.getElementById("typePlage").value;
+    const today = new Date().toISOString().split("T")[0]; // date du jour
 
     if (type === "jour") {
-        const jour = document.getElementById("dateJour").value;
-        if (!jour) return;
+        const jour = document.getElementById("dateJour").value || today;
+        document.getElementById("dateJour").value = jour; // met à jour le champ si vide
         debut = jour;
         fin = jour;
     } else {
-        debut = document.getElementById("dateDebut").value;
-        fin = document.getElementById("dateFin").value;
-        if (!debut || !fin) return;
+        debut = document.getElementById("dateDebut").value || today;
+        fin = document.getElementById("dateFin").value || today;
+        document.getElementById("dateDebut").value = debut;
+        document.getElementById("dateFin").value = fin;
     }
 
     fetch("getData.php", {
@@ -94,47 +112,63 @@ function afficherCourbe(data) {
     const typePlage = document.getElementById("typePlage").value;
     let labels;
 
+    // Gestion des labels (heure ou date + heure)
     if (typePlage === "jour") {
-    // Affiche l'heure
-    labels = data.map(d => d.heure);
+        labels = data.map(d => d.heure);
     } else {
-        // Affiche date + heure
         labels = data.map(d => d.date_j + " " + d.heure);
     }
 
     let valeurs = [];
+    let labelCourbe = "";
+    let couleurCourbe = "";
 
+    // Choix des données selon le bouton cliqué
     switch(typeCourbe) {
+
         case "temperature":
             valeurs = data.map(d => d.temperature);
+            labelCourbe = "Température";
+            couleurCourbe = "red";
             break;
+
         case "courant":
             valeurs = data.map(d => d.courant_secteur);
+            labelCourbe = "Courant";
+            couleurCourbe = "green";
             break;
+
+        default:
+            console.log("Type de courbe inconnu :", typeCourbe);
+            return;
     }
 
-    if (chartTemp) chartTemp.destroy();
+    // Détruire l'ancienne courbe pour la recréer proprement
+    if (chartTemp) {
+        chartTemp.destroy();
+    }
 
     chartTemp = new Chart(document.getElementById("graphTemp"), {
-    type: "line",
-    data: {
+        type: "line",
+        data: {
             labels: labels,
             datasets: [{
-                label: typeCourbe,
+                label: labelCourbe,
                 data: valeurs,
-                borderColor:
-                    typeCourbe === "temperature" ? "red" :
-                    typeCourbe === "allumage" ? "blue" : "green",
+                borderColor: couleurCourbe,
                 tension: 0.3
             }]
         },
         options: {
+            responsive: true,
+
             plugins: {
-                        title: {
-                            display: true,
-                            text: getTitreGraphique()
-                        }
+                title: {
+                    display: true,
+                    text: getTitreGraphique()
+                }
             },
+
             scales: {
                 x: {
                     title: {
@@ -157,8 +191,6 @@ function getLabelAxeY() {
     switch(typeCourbe) {
         case "temperature":
             return "Température (°C)";
-        case "allumage":
-            return "État (0 = éteint, 1 = allumé)";
         case "courant":
             return "Courant (A)";
         default:

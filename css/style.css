@@ -250,9 +250,28 @@ button:active {
     justify-content:center;
 }
 
-.tab-button{
-    width:auto;
+.tabs button{
+    width:100%;
     padding:10px 20px;
+    margin-right:10px;
+    background:#3498db;
+    color:white;
+    border:2px solid transparent;
+    border-radius:6px;
+    cursor:pointer;
+    transition: border 0.2s ease;
+}
+
+/* Température sélectionnée */
+
+.tabs button.temperature-active{
+    border:3px solid red;
+}
+
+/* Courant sélectionné */
+
+.tabs button.courant-active{
+    border:3px solid green;
 }
 /* =====================================================
    9. LIENS
