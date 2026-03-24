@@ -356,3 +356,8 @@ tr:nth-child(even) td {
         padding: 10px 0;
     }
 }
+
+#graphTemp {
+    width: 100%;
+    height: 300px; /* taille fixe pour que Chart.js puisse dessiner même si le canvas était caché */
+}

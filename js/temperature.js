@@ -12,15 +12,12 @@ function choisirCourbe(evt, type) {
         );
     });
 
-    if (type === "temperature") {
-        evt.target.classList.add("temperature-active");
-    }
-
-    if (type === "courant") {
-        evt.target.classList.add("courant-active");
-    }
+    if (type === "temperature") evt.target.classList.add("temperature-active");
+    if (type === "courant") evt.target.classList.add("courant-active");
 
     typeCourbe = type;
+
+    // Charger la courbe avec la plage actuelle
     demanderCourbes();
 }
 
@@ -212,6 +209,23 @@ document.getElementById("typePlage").addEventListener("change", adapterDates);
 document.getElementById("dateJour").addEventListener("change", chargerCourbe);
 document.getElementById("dateDebut").addEventListener("change", chargerCourbe);
 document.getElementById("dateFin").addEventListener("change", chargerCourbe);
+
+// Afficher la courbe de température par défaut au chargement de la page
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Définir le type de courbe par défaut
+    typeCourbe = "temperature";
+
+    // 2. Sélectionner le bouton Température pour la classe active
+    const btnTemp = document.querySelector(".tabs-button");
+    if (btnTemp) btnTemp.classList.add("temperature-active");
+
+    // 3. Afficher la zone optionsCourbe avant de charger le graphique
+    const options = document.getElementById("optionsCourbe");
+    options.style.display = "block";
+
+    // 4. Appeler la fonction de chargement de la courbe
+    chargerCourbe();
+});
 
 // Rafraîchissement toutes les 5 minutes
 setInterval(() => {

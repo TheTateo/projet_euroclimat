@@ -172,7 +172,7 @@ if (!isset($_SESSION['id'])) {
 
         <!-- Canvas de la courbe -->
         <div style="margin-top:30px;">
-            <canvas id="graphTemp" width="600" height="300"></canvas>
+            <canvas id="graphTemp"></canvas>
         </div>
     </div>
 
