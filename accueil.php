@@ -50,10 +50,13 @@ if (!isset($_SESSION['id'])) {
     <div class="container-dashboard">
 
     <?php 
-    $stmt_ligne = $pdo->query("SELECT id, etat_actionneur, temperature, courant_secteur, duree_allumage
-                                FROM mesures_systeme
-                                ORDER BY id DESC
-                                LIMIT 1");
+    $stmt_ligne = $pdo->query("
+    SELECT id, temperature, tension, courant_secteur
+        FROM mesures_systeme
+        ORDER BY id DESC
+        LIMIT 1
+    ");
+
     $ligne = $stmt_ligne->fetch(PDO::FETCH_ASSOC);
 
     if ($ligne) {
@@ -71,8 +74,12 @@ if (!isset($_SESSION['id'])) {
 
             <table>
                 <tr>
-                    <th>Etat de l'interrupteur</th>
-                    <td><?= isset($ligne['etat_actionneur']) && $ligne['etat_actionneur'] == 1 ? "Allumé" : "Éteint" ?></td>
+                    <th>Etat interrupteur</th>
+                    <!-- <td><?= isset($ligne['tension']) && $ligne['tension'] >= 1 ? "Allumé" : "Éteint" ?></td> -->
+                </tr>
+                <tr>
+                    <th>Tension</th>
+                    <td><?= htmlspecialchars($ligne['tension']) ?> °C</td>
                 </tr>
 
                 <tr>
@@ -87,7 +94,7 @@ if (!isset($_SESSION['id'])) {
 
                 <tr>
                     <th>Durée restante d'allumage</th>
-                    <td id="compteAReboursAllumage"><?= htmlspecialchars($ligne['duree_allumage']) ?> s</td>
+                    <td id="compteAReboursAllumage"><?= htmlspecialchars($ligne['duree_allumage'] ?? 0) ?> s</td>
                 </tr>
             </table>
         </div>
@@ -215,7 +222,7 @@ if (!isset($_SESSION['id'])) {
     <!-- Deconnexion -->
     <div>
         <form action="logout.php" method="POST" style="text-align:right;">
-            <button type="submit">Déconnexion</button>
+            <button type="submit" class="btn">Déconnexion</button>
         </form>
     </div>
 </body>

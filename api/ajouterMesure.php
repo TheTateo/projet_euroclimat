@@ -1,12 +1,19 @@
 <?php
+
 require "../connexion.php";
 
-// Récupérer les données envoyées
-$temperature = $_POST["temperature"] ?? null;
-$temsion = $_POST["tension"] ?? null; // Trouver PK ???
-$courant = $_POST["courant_secteur"] ?? null;
+header("Content-Type: application/json");
 
-if ($temperature === null || $tension === null || $courant === null) {
+$data = json_decode(file_get_contents("php://input"), true);
+
+$temperature = $data["temperature"] ?? null;
+$tension = $data["tension"] ?? null;
+$courant = $data["courant"] ?? null;
+
+// valeur par défaut si non envoyée
+$duree_allumage = $data["duree_allumage"] ?? 0;
+
+if ($temperature === null || $courant === null) {
     echo json_encode([
         "status" => "error",
         "message" => "Données manquantes"
@@ -14,14 +21,46 @@ if ($temperature === null || $tension === null || $courant === null) {
     exit;
 }
 
-// Insertion dans la base
-$sql = "INSERT INTO mesures_systeme (temperature, courant_secteur, date_mesure)
-        VALUES (?, ?, NOW())";
+try {
 
-$stmt = $pdo->prepare($sql);
-$stmt->execute([$temperature, $humidite]);
+    $sql = "INSERT INTO mesures_systeme
+            (
+                date_j,
+                heure,
+                temperature,
+                tension,
+                courant_secteur,
+                duree_allumage
+            )
+            VALUES
+            (
+                CURDATE(),
+                CURTIME(),
+                ?,
+                ?,
+                ?,
+                ?
+            )";
 
-echo json_encode([
-    "status" => "success",
-    "message" => "Mesure enregistrée"
-]);
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->execute([
+        $temperature,
+        $tension,
+        $courant,
+        $duree_allumage
+    ]);
+
+    echo json_encode([
+        "status" => "success",
+        "message" => "Mesure enregistrée"
+    ]);
+
+} catch (PDOException $e) {
+
+    echo json_encode([
+        "status" => "error",
+        "message" => $e->getMessage()
+    ]);
+
+}

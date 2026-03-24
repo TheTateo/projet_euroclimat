@@ -79,4 +79,6 @@ Lundi 23/03:
 Mardi 24/03:
   - Amélioration de la visibilité du bouton Température et Courant lorsqu'ils sont sélectionnés - TERMINE
   - Actualisation automatique du graphique affiché avec le bouton cliqué - TERMINE
-    + Changement de la logique d'actualisation pour qu'ils prennent pas que pour les jours
+    + Changement de la logique d'actualisation pour qu'ils prennent pas que pour les jours - NON TERMINE
+  - Ajout d'un compte à rebours pour la durée restante d'allumage de l'interrupteur - TERMINE
+  + Enlever duree_allumage de la table mesures_systeme

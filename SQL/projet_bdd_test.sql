@@ -17,9 +17,8 @@ CREATE TABLE mesures_systeme (
     date_j DATE NOT NULL,
     heure TIME NOT NULL,
     temperature DECIMAL(5,2) NOT NULL,
-    courant_secteur DECIMAL(6,3) NOT NULL,
-    etat_actionneur BOOLEAN NOT NULL,
-    duree_allumage INT NOT NULL
+    tension DECIMAL(5,2) NOT NULL,
+    courant_secteur DECIMAL(6,3) NOT NULL
 );
 
 -- =====================================================
@@ -81,19 +80,25 @@ CREATE TABLE alertes (
 -- =====================================================
 
 INSERT INTO mesures_systeme
-(date_j, heure, temperature, courant_secteur, etat_actionneur, duree_allumage)
+(
+    date_j,
+    heure,
+    temperature,
+    tension,
+    courant_secteur
+)
+
 SELECT
 DATE(d) AS date_j,
 TIME(d) AS heure,
-ROUND(15 + RAND()*15,2) AS temperature,
-ROUND(229 + RAND()*2,3) AS courant_secteur,
-FLOOR(RAND()*2) AS etat_actionneur,
-FLOOR(RAND()*900) AS duree_allumage
-FROM (
-    SELECT TIMESTAMP('2026-03-01 00:00:00') + INTERVAL seq*5 MINUTE AS d
-    FROM (
-        SELECT @row := @row + 1 AS seq
-        FROM information_schema.columns, (SELECT @row := -1) r
+ROUND(15 + RAND()*15, 2) AS temperature,
+ROUND(229 + RAND()*2, 2) AS tension,
+ROUND(0.5 + RAND()*2, 3) AS courant_secteur
+
+FROM (SELECT TIMESTAMP('2026-03-01 00:00:00') + INTERVAL seq*5 MINUTE AS d
+    FROM (SELECT @row := @row + 1 AS seq
+        FROM information_schema.columns,
+             (SELECT @row := -1) r
         LIMIT 2016
     ) t
 ) dates;

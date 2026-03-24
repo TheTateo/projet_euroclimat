@@ -75,11 +75,6 @@ body {
     background-color: #ddd;
 }
 
-.container-courbes .tabs button.active {
-    background-color: #4285f4;
-    color: white;
-}
-
 /* Bloc informations */
 .container-info {
     display: flex;
