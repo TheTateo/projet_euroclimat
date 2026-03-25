@@ -79,15 +79,7 @@ CREATE TABLE alertes (
 -- DONNEES DE TEST
 -- =====================================================
 
-INSERT INTO mesures_systeme
-(
-    date_j,
-    heure,
-    temperature,
-    tension,
-    courant_secteur
-)
-
+INSERT INTO mesures_systeme (date_j, heure, temperature, tension, courant_secteur)
 SELECT
 DATE(d) AS date_j,
 TIME(d) AS heure,
