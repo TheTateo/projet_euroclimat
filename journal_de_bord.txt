@@ -82,3 +82,28 @@ Mardi 24/03:
     + Changement de la logique d'actualisation pour qu'ils prennent pas que pour les jours - TERMINE
   - Ajout d'un compte à rebours pour la durée restante d'allumage de l'interrupteur - TERMINE
   + Enlever duree_allumage de la table mesures_systeme
+
+Lundi 30/03:
+  - Affichage des graphiques sur le site chez.com - NON TERMINE
+    + Problème d'affichage des graphiques en php 5.2.6
+
+Mardi 31/03:
+  - Résolution d'un problème d'encodage des fichiers sur chez.com
+    + Modification de l'encodage des fichiers de ANSI -> UTF-8 pour afficher les accents des fichiers suivants : 
+      - accueil.php - TERMINE
+      - register.php -
+      - validation.php -
+      - mail.php - TERMINE
+  - Utilisation de PHPMailer pour l'envoi de mails - EN COURS
+    + Version 5.2.27 (Github) pour avoir une version compatible avec la version php 5.2.6 de chez.com
+    + Problèmes de sécurité (pas SSL/TLS)
+  - Utilisation d'une API pour l'utiliser avec PHPMailer - EN COURS
+    - Utilisation de l'API Twilio SendGrid - ABANDON
+      + Pas possible car c'est un essai de 60 jours 
+    - Utilisation de Mailjet
+      - Création de compte + choix plan gratuit
+      - Configuration de l'adresse d'envoi
+      - Génération de la clé secrète + récupérer la clé API
+      - Intégration de mailjet : https://github.com/mailjet/mailjet-apiv3-php
+  - Modification de l'emplacement de config.php dans un dossier privé sur chez.com - TERMINE
+    - Ajout d'un fichier .htaccess -> bloque l'accès à config.php 

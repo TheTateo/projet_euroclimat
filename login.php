@@ -28,4 +28,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Identifiants incorrects ou compte non validé.";
     }
 }
-?>
