@@ -100,10 +100,18 @@ Mardi 31/03:
   - Utilisation d'une API pour l'utiliser avec PHPMailer - EN COURS
     - Utilisation de l'API Twilio SendGrid - ABANDON
       + Pas possible car c'est un essai de 60 jours 
-    - Utilisation de Mailjet
+    - Utilisation de Mailjet - ABANDON
       - Création de compte + choix plan gratuit
       - Configuration de l'adresse d'envoi
       - Génération de la clé secrète + récupérer la clé API
       - Intégration de mailjet : https://github.com/mailjet/mailjet-apiv3-php
   - Modification de l'emplacement de config.php dans un dossier privé sur chez.com - TERMINE
-    - Ajout d'un fichier .htaccess -> bloque l'accès à config.php 
+    - Ajout d'un fichier .htaccess -> bloque l'accès à config.php
+
+Mercredi 01/04:
+  - Utilisation de la fonction mail() de php - RETENU
+    + Filtrage des mails envoyés grâce à cette fonction
+  - Affichage des courbes sur le site de chez.com - TERMINE
+  - Amélioration de l'UX
+    - Ajout d'un message lorsque aucune donnée est disponible pour tracer les courbes - TERMINE
+  - Bouton de déconnexion en raccord avec les autres boutons
