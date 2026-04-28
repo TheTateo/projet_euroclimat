@@ -114,4 +114,4 @@ Mercredi 01/04:
   - Affichage des courbes sur le site de chez.com - TERMINE
   - Amélioration de l'UX
     - Ajout d'un message lorsque aucune donnée est disponible pour tracer les courbes - TERMINE
-  - Bouton de déconnexion en raccord avec les autres boutons
+  - Bouton de déconnexion en raccord avec les autres boutons - TERMINE
